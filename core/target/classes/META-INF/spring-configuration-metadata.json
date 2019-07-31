@@ -4,8 +4,51 @@
       "name": "jwt.config",
       "type": "dev.igorsily.core.configs.JwtConfiguration",
       "sourceType": "dev.igorsily.core.configs.JwtConfiguration"
+    },
+    {
+      "name": "jwt.config.header",
+      "type": "dev.igorsily.core.configs.JwtConfiguration$Header",
+      "sourceType": "dev.igorsily.core.configs.JwtConfiguration",
+      "sourceMethod": "getHeader()"
     }
   ],
-  "properties": [],
+  "properties": [
+    {
+      "name": "jwt.config.expiration",
+      "type": "java.lang.Integer",
+      "sourceType": "dev.igorsily.core.configs.JwtConfiguration",
+      "defaultValue": 3600
+    },
+    {
+      "name": "jwt.config.header.name",
+      "type": "java.lang.String",
+      "sourceType": "dev.igorsily.core.configs.JwtConfiguration$Header",
+      "defaultValue": "Authorization"
+    },
+    {
+      "name": "jwt.config.header.prefix",
+      "type": "java.lang.String",
+      "sourceType": "dev.igorsily.core.configs.JwtConfiguration$Header",
+      "defaultValue": "Bearer"
+    },
+    {
+      "name": "jwt.config.private-key",
+      "type": "java.lang.String",
+      "sourceType": "dev.igorsily.core.configs.JwtConfiguration",
+      "defaultValue": "8r94FS8dBhxnusA3w0UaFwMQOXChx7Dh"
+    },
+    {
+      "name": "jwt.config.type",
+      "type": "java.lang.String",
+      "sourceType": "dev.igorsily.core.configs.JwtConfiguration",
+      "defaultValue": "encrypted"
+    },
+    {
+      "name": "jwt.config.url-login",
+      "type": "java.lang.String",
+      "sourceType": "dev.igorsily.core.configs.JwtConfiguration",
+      "defaultValue": "\/login\/**"
+    }
+  ],
   "hints": []
 }
