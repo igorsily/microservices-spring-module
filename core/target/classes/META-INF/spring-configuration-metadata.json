@@ -1,0 +1,11 @@
+{
+  "groups": [
+    {
+      "name": "jwt.config",
+      "type": "dev.igorsily.core.configs.JwtConfiguration",
+      "sourceType": "dev.igorsily.core.configs.JwtConfiguration"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}

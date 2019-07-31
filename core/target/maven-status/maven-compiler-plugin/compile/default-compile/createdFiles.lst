@@ -1,0 +1,7 @@
+dev\igorsily\core\repositories\CourseRepository.class
+dev\igorsily\core\models\Course.class
+dev\igorsily\core\configs\JwtConfiguration.class
+META-INF\spring-configuration-metadata.json
+dev\igorsily\core\configs\JwtConfiguration$Header.class
+dev\igorsily\core\models\User.class
+dev\igorsily\core\repositories\UserRepository.class
