@@ -1,5 +1,7 @@
 package dev.igorsily.core.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -20,6 +22,7 @@ public class User implements Serializable {
 
     @NotNull(message = "The field 'password' is mandatory")
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     private Set<String> roles = new HashSet<>();

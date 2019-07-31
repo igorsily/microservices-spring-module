@@ -1,17 +1,15 @@
 package dev.igorsily.auth.configs;
 
 import dev.igorsily.auth.security.JWTAuthenticationFilter;
+import dev.igorsily.auth.security.UserDetailServiceImpl;
 import dev.igorsily.core.configs.JwtConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 
@@ -21,10 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailServiceImpl userDetailsService;
 
-    private JwtConfiguration jwtConfiguration;
+    private final JwtConfiguration jwtConfiguration;
+
+
+    public SecurityConfig(UserDetailServiceImpl userDetailsService, JwtConfiguration jwtConfiguration) {
+        this.userDetailsService = userDetailsService;
+        this.jwtConfiguration = jwtConfiguration;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -46,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().authenticationEntryPoint((req, res, err) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
-                .addFilter(new JWTAuthenticationFilter())
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtConfiguration))
                 .authorizeRequests().antMatchers(jwtConfiguration.getUrlLogin()).permitAll()
                 .antMatchers("/course/admin/**").hasRole("ADMIN")
                 .anyRequest().permitAll();

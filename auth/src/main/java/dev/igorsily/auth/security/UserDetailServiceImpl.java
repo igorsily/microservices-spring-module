@@ -1,5 +1,6 @@
 package dev.igorsily.auth.security;
 
+import com.netflix.discovery.converters.Auto;
 import dev.igorsily.core.models.User;
 import dev.igorsily.core.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
+
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public UserDetailServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
